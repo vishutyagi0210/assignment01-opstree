@@ -174,7 +174,7 @@ class Orchestrator:
 
                 # Check 2: Does the healthcheck endpoint respond?
                 try:
-                    url = f"http://localhost:{host_port}{endpoint}"
+                    url = f"http://localhost:{host_port}/{endpoint}"
                     resp = requests.get(url, timeout=3)
                     if resp.status_code == 200:
                         healthy = True

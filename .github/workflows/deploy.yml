@@ -1,0 +1,16 @@
+name: CD workflow
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+      - name: 
+        run: |
+          python create venv venv 
+          source venv/scripts/activate
+          
+          

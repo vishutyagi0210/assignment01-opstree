@@ -17,4 +17,6 @@ jobs:
       
       - name: run the virtual environment
         run: |
-          source venv/
+          source venv/scripts/activate
+          pip install -r requirements.txt
+          python orch.py -r app.yml 

@@ -14,13 +14,11 @@ jobs:
         with:
           fetch-depth: 0 
           
-      # - name: TruffleHog Secret Scan
-      #   uses: trufflesecurity/trufflehog@main
-      #   with:
-      #     path: ./
-      #     base: origin/main
-      #     head: HEAD
-      #     extra_args: --only-verified
+      - name: Run Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Source Code SCA: Scan pom.xml for vulnerable dependencies
       - name: Trivy Filesystem Scan
@@ -93,4 +91,4 @@ jobs:
           command: cves
           image: ${{ vars.DOCKER_USERNAME }}/java:${{ github.sha }}
           only-severities: critical,high
-          exit-code: false # Fail the build if the final image is vulnerable
+          exit-code: false 

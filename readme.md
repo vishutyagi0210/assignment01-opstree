@@ -110,3 +110,11 @@ The pipeline will handle the rest on each push.
 
 - [ ] **Secrets management** — Secure secret injection using Base64 encoding
 - [ ] **AWS Vault integration** — Fetch and inject secrets from HashiCorp Vault on AWS
+
+
+Implementation plan for secret management
+
+for normal secret management I will put a base64 decoder in the python app
+
+for aws vault integration 
+we will first create the iam role in aws the put the creds into my python code and use it to fetch tha secrets accordingly to the yml file.

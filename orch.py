@@ -68,6 +68,7 @@ class Orchestrator:
         self.replicas = config["replicas"]
         self.ports = config["ports"]  # e.g. ["8081:8080", "8082:8080"]
         self.healthcheck = config.get("healthcheck", {})
+        self.environment = config.get("environment", {})
         self.containers = {}  # {replica_index: container_object}
         self.running = True
 
@@ -103,6 +104,7 @@ class Orchestrator:
             image=self.image,
             name=container_name,
             ports={f"{container_port}/tcp": int(host_port)},
+            environment=self.environment,
             detach=True,
             labels={
                 "managed-by": "orch",

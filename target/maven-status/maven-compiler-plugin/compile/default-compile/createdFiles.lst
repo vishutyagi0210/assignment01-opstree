@@ -1,0 +1,3 @@
+com\orch\controller\HelloController.class
+com\orch\controller\HealthCheckController.class
+com\orch\OrchApplication.class

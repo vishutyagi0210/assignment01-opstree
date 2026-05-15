@@ -18,8 +18,8 @@ jobs:
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: ${{ github.sha }}
+          base: origin/main
+          head: HEAD
           extra_args: --only-verified
 
       # 2. Source Code SCA: Scan pom.xml for vulnerable dependencies

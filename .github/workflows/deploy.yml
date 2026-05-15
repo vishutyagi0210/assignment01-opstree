@@ -1,16 +1,20 @@
-name: CD workflow
+name: Pull And Deploy
 
+on:
+  workflow_run:
+    workflows: ["Build And Push"]
+    types: [completed]
+  
 jobs:
-  deploy:
+
+  pull-and-deploy:
     runs-on: self-hosted
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout Code
+      - name: checkout only docker-compose.prod.yml
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
-      - name: 
+      
+      - name: run the virtual environment
         run: |
-          python create venv venv 
-          source venv/scripts/activate
-          
-          
+          source venv/

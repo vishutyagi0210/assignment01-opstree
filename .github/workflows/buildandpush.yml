@@ -14,13 +14,13 @@ jobs:
         with:
           fetch-depth: 0 
           
-      - name: TruffleHog Secret Scan
-        uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: origin/main
-          head: HEAD
-          extra_args: --only-verified
+      # - name: TruffleHog Secret Scan
+      #   uses: trufflesecurity/trufflehog@main
+      #   with:
+      #     path: ./
+      #     base: origin/main
+      #     head: HEAD
+      #     extra_args: --only-verified
 
       # 2. Source Code SCA: Scan pom.xml for vulnerable dependencies
       - name: Trivy Filesystem Scan

@@ -1,4 +1,4 @@
-name: Build And Push (DevSecOps)
+name: Build And Push
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Source Code SCA: Scan pom.xml for vulnerable dependencies
+      # For vulnerable dependencies
       - name: Trivy Filesystem Scan
         uses: aquasecurity/trivy-action@master
         with:
@@ -32,7 +32,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
   build-and-push:
-    needs: security-scans # Won't run if security scans fail
+    needs: security-scans 
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -45,7 +45,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      # This saves ~2 minutes per build by caching ~/.m2/repository across runs
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:

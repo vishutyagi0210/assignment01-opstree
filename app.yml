@@ -1,6 +1,6 @@
 service:
   name: orch-app
-  image: orch-app:latest
+  image: vishu0210/java:latest
   replicas: 3
   ports:
     - "8081:8080"
